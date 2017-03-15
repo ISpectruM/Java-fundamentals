@@ -1,18 +1,21 @@
-package A_InterfacesAndAbstractionLab.CarShop;
+package A_InterfacesAndAbstractionLab.C_CarShopExtended;
 
-import java.io.Serializable;
-
-public class Seat implements Car, Serializable{
+public class Audi implements Rentable{
     private String model;
     private String color;
     private Integer horsePower;
     private String countryProduced;
+    private Integer minRentDay;
+    private Double pricePerDay;
 
-    public Seat(String model, String color, Integer horsePower, String countryProduced) {
+
+    public Audi(String model, String color, Integer horsePower, String countryProduced, Integer minRentDay, Double pricePerDay) {
         this.setModel(model);
         this.setColor(color);
         this.setHorsePower(horsePower);
         this.setCountryProduced(countryProduced);
+        this.setMinRentDay(minRentDay);
+        this.setPricePerDay(pricePerDay);
     }
 
     private void setModel(String model) {
@@ -23,7 +26,7 @@ public class Seat implements Car, Serializable{
         this.color = color;
     }
 
-    private void setHorsePower(int horsePower) {
+    private void setHorsePower(Integer horsePower) {
         this.horsePower = horsePower;
     }
 
@@ -31,8 +34,26 @@ public class Seat implements Car, Serializable{
         this.countryProduced = countryProduced;
     }
 
+    private void setMinRentDay(Integer minRentDay) {
+        this.minRentDay = minRentDay;
+    }
+
+    private void setPricePerDay(Double pricePerDay) {
+        this.pricePerDay = pricePerDay;
+    }
+
     public String getCountryProduced() {
         return this.countryProduced;
+    }
+
+    @Override
+    public Integer getMinRentDay() {
+        return this.minRentDay;
+    }
+
+    @Override
+    public Double getPricePerDay() {
+        return this.pricePerDay;
     }
 
     @Override
