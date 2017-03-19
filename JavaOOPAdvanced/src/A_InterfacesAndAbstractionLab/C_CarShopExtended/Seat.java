@@ -2,7 +2,7 @@ package A_InterfacesAndAbstractionLab.C_CarShopExtended;
 
 import java.io.Serializable;
 
-public class Seat implements Sellable, Serializable, Car{
+public class Seat implements Sellable, Serializable{
     private String model;
     private String color;
     private Integer horsePower;
