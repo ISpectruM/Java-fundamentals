@@ -1,4 +1,4 @@
-package B_Generics_Exercises.G_CustomListSorter;
+package B_Generics_Exercises.G_CustomList;
 
 public interface CustomList<T extends Comparable<T>> {
 
