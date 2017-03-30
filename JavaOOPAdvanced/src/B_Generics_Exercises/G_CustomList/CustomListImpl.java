@@ -1,4 +1,4 @@
-package B_Generics_Exercises.G_CustomListSorter;
+package B_Generics_Exercises.G_CustomList;
 
 import java.util.ArrayList;
 import java.util.List;
