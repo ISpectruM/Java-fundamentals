@@ -6,13 +6,9 @@ import E_Reflection_Exercises.D_BarracksWars_TheCommandsStrikeBack.pr0304Barrack
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class Engine implements Runnable {
-	private static final String COMMANDS_PACKAGE_NAME =
-			"E_Reflection_Exercises.D_BarracksWars_TheCommandsStrikeBack.pr0304Barracks.core.commands.";
 
 	private Repository repository;
 	private UnitFactory unitFactory;
@@ -22,7 +18,15 @@ public class Engine implements Runnable {
 		this.unitFactory = unitFactory;
 	}
 
-	@Override
+    private Repository getRepository() {
+        return this.repository;
+    }
+
+    private UnitFactory getUnitFactory() {
+        return this.unitFactory;
+    }
+
+    @Override
 	public void run() {
 		BufferedReader reader = new BufferedReader(
 				new InputStreamReader(System.in));
@@ -31,7 +35,7 @@ public class Engine implements Runnable {
 				String input = reader.readLine();
 				String[] data = input.split("\\s+");
 				String commandName = data[0];
-				String result = interpredCommand(data, commandName);
+				String result = executeCommand(data, commandName);
 				if (result.equals("fight")) {
 					break;
 				}
@@ -55,26 +59,9 @@ public class Engine implements Runnable {
 	}
 
 	// TODO: refactor for problem 4
-	private String interpredCommand(String[] data, String commandName) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		try {
-			String parsedCommand = commandName.substring(0, 1).toUpperCase() + commandName.substring(1).toLowerCase();
-			Class commandClass = Class.forName(COMMANDS_PACKAGE_NAME + parsedCommand + "Command");
-
-			Constructor[] constructors = commandClass.getDeclaredConstructors();
-			Object instance = constructors[0]
-					.newInstance(data, this.unitFactory, this.repository);
-
-			Method[] methods = commandClass.getDeclaredMethods();
-			Method method = null;
-			for (Method m : methods) {
-				if (m.getName().equals("execute")) {
-					method = m;
-				}
-			}
-
-			return (String) method.invoke(instance);
-		}catch (ClassNotFoundException cnfe){
-			throw new RuntimeException("Invalid command!");
-		}
+	private String executeCommand(String[] data, String commandName) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+	    CommandInterpreter interpreter = new CommandInterpreterImpl(this.getRepository(),this.getUnitFactory());
+	    Executable executable = interpreter.interpretCommand(data,commandName);
+	    return executable.execute();
 	}
 }
