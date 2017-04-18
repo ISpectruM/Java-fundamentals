@@ -1,4 +1,4 @@
-package I_ObjectCommunicationAndEvents.A_ChainOfResponsibility.models;
+package I_ObjectCommunicationAndEvents.models;
 
 public interface Attacker {
     void attack();

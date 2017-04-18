@@ -1,4 +1,4 @@
-package I_ObjectCommunicationAndEvents.A_ChainOfResponsibility.loggers;
+package I_ObjectCommunicationAndEvents.loggers;
 
 public interface Handler {
 

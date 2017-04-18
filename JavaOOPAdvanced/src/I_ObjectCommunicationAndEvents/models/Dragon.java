@@ -1,7 +1,7 @@
-package I_ObjectCommunicationAndEvents.A_ChainOfResponsibility.models;
+package I_ObjectCommunicationAndEvents.models;
 
-import loggers.Handler;
-import loggers.LogType;
+import I_ObjectCommunicationAndEvents.loggers.Handler;
+import I_ObjectCommunicationAndEvents.loggers.LogType;
 
 public class Dragon implements Target {
 
